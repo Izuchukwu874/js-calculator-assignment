@@ -191,3 +191,27 @@ buttonsContainer.addEventListener('click', (event) => {
   }
 });
 
+let historyClearTimerId;
+
+this.performOperation = function(nextOperator) {
+  const inputValue = parseFloat(this.currentInput);
+
+  // Division by zero validation
+  if (this.operator === '/' && inputValue === 0) {
+    this.currentInput = 'Error: Division by zero';
+    this.updateDisplay();
+    this.clearCalculator();
+    return;
+  }
+
+  if (this.firstOperand !== null && this.operator !== null && !this.waitingForSecondOperand) {
+    // do calculation...
+  }
+
+  clearTimeout(historyClearTimerId);
+  historyClearTimerId = setTimeout(() => {
+    this.calculationHistory = [];
+    this.updateHistory();
+  }, 30000);
+};
+
