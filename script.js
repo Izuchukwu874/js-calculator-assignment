@@ -53,3 +53,56 @@ buttonsContainer.addEventListener('click', (event) => {
   }
 });
 
+function performOperation(nextOperator) {
+  const inputValue = parseFloat(currentInput);
+
+  if (firstOperand === null && !isNaN(inputValue)) {
+    firstOperand = inputValue;
+  } else if (operator && !waitingForSecondOperand) {
+    let result = 0;
+    switch (operator) {
+      case '+': result = firstOperand + inputValue; break;
+      case '-': result = firstOperand - inputValue; break;
+      case '*': result = firstOperand * inputValue; break;
+      case '/': result = firstOperand / inputValue; break;
+    }
+
+    const historyEntry = `${firstOperand} ${operator} ${inputValue} = ${result}`;
+    calculationHistory.push(historyEntry);
+
+    currentInput = String(result);
+    firstOperand = result;
+    updateHistory();
+  }
+
+  operator = nextOperator;
+  waitingForSecondOperand = true;
+  updateDisplay();
+}
+
+const updateHistory = function () {
+  historyDiv.innerHTML = '<h3>Calculation History</h3>';
+  for (const entry of calculationHistory) {
+    const p = document.createElement('p');
+    p.textContent = entry;
+    historyDiv.appendChild(p);
+  }
+}
+
+// Modify event listener
+buttonsContainer.addEventListener('click', (event) => {
+  const target = event.target;
+  if (!target.matches('button')) return;
+  const value = target.textContent;
+
+  if (!isNaN(value)) {
+    appendNumber(value);
+    updateDisplay();
+  } else if (value === 'C') {
+    clearCalculator();
+    updateDisplay();
+  } else {
+    performOperation(value);
+  }
+});
+
