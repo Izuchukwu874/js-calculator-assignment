@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Calculator</title>
+  <style>
+    #calculator-app {
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+    }
+    #buttons-container button {
+      width: 60px;
+      height: 40px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator-app">
+    <input id="display" type="text" readonly />
+
+    <div id="buttons-container">
+      <!-- Numbers -->
+      <button>7</button><button>8</button><button>9</button>
+      <button>4</button><button>5</button><button>6</button>
+      <button>1</button><button>2</button><button>3</button>
+      <button>0</button>
+      <!-- Operators -->
+      <button>+</button><button>-</button>
+      <button>*</button><button>/</button>
+      <button>=</button>
+      <button>C</button>
+    </div>
+
+    <div id="history">
+      <h3>Calculation History</h3>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
