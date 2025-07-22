@@ -1,4 +1,4 @@
- // Variables
+ 
 let currentInput = '0';
 let firstOperand = null;
 let operator = null;
@@ -6,7 +6,7 @@ let waitingForSecondOperand = false;
 
 const calculationHistory = [];
 
-// Reset calculator
+
 function clearCalculator() {
   currentInput = '0';
   firstOperand = null;
@@ -14,7 +14,7 @@ function clearCalculator() {
   waitingForSecondOperand = false;
 }
 
-// Append a number
+
 const appendNumber = function (number) {
   if (waitingForSecondOperand) {
     currentInput = String(number);
@@ -24,7 +24,6 @@ const appendNumber = function (number) {
   }
 }
 
-// Update the display
 const updateDisplay = () => {
   document.getElementById('display').value = currentInput;
 }
@@ -33,11 +32,11 @@ const display = document.getElementById('display');
 const buttonsContainer = document.getElementById('buttons-container');
 const historyDiv = document.getElementById('history');
 
-// Initial state
+
 clearCalculator();
 updateDisplay();
 
-// Event delegation
+
 buttonsContainer.addEventListener('click', (event) => {
   const target = event.target;
   if (!target.matches('button')) return;
@@ -89,7 +88,7 @@ const updateHistory = function () {
   }
 }
 
-// Modify event listener
+
 buttonsContainer.addEventListener('click', (event) => {
   const target = event.target;
   if (!target.matches('button')) return;
@@ -170,10 +169,10 @@ class Calculator {
   }
 }
 
-// Create instance
+
 const calculator = new Calculator(display, historyDiv);
 
-// Updated event listener
+
 buttonsContainer.addEventListener('click', (event) => {
   const target = event.target;
   if (!target.matches('button')) return;
@@ -196,7 +195,7 @@ let historyClearTimerId;
 this.performOperation = function(nextOperator) {
   const inputValue = parseFloat(this.currentInput);
 
-  // Division by zero validation
+  
   if (this.operator === '/' && inputValue === 0) {
     this.currentInput = 'Error: Division by zero';
     this.updateDisplay();
@@ -205,7 +204,7 @@ this.performOperation = function(nextOperator) {
   }
 
   if (this.firstOperand !== null && this.operator !== null && !this.waitingForSecondOperand) {
-    // do calculation...
+    
   }
 
   clearTimeout(historyClearTimerId);
@@ -214,4 +213,8 @@ this.performOperation = function(nextOperator) {
     this.updateHistory();
   }, 30000);
 };
+
+// Conceptual: Form libraries like Formik (React) or React Hook Form help manage complex forms.
+// They offer easier state handling, automatic validation, and user-friendly error messages,
+// which reduce manual code compared to vanilla JS.
 
